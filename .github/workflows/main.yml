@@ -51,6 +51,6 @@ jobs:
         run: yarn test:cov
 
       - name: Upload coverage data 👽
-        env: 
+        env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         run: npx codecov
