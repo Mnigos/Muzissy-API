@@ -45,6 +45,9 @@
       "valid-typeof": [
           "error",
           { "requireStringLiterals": false }
-      ]
+      ],
+      "import/no-extraneous-dependencies": ["warn", {
+        "devDependencies": true
+      }]
   }
 }
