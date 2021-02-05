@@ -55,4 +55,6 @@ jobs:
       - name: Collect coverage
         env: 
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        run: yarn codecov
+        run: |
+          yarn test:cov
+          yarn codecov
