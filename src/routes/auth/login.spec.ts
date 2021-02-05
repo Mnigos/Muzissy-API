@@ -12,7 +12,7 @@ describe('Login system', () => {
   it("Login fails when user data isn't provided or incomplete", async () => {
     await request(app).post('/auth/login').expect(400);
     await request(app)
-      .post('/auth/qlogin')
+      .post('/auth/login')
       .set('Content-Type', 'application/json')
       .send({
         name: 'John',
