@@ -10,9 +10,9 @@ describe('Login system', () => {
   });
 
   it("Login fails when user data isn't provided or incomplete", async () => {
-    await request(app).post('/auth/admin').expect(400);
+    await request(app).post('/auth/login').expect(400);
     await request(app)
-      .post('/login')
+      .post('/auth/login')
       .set('Content-Type', 'application/json')
       .send({
         name: 'John',
@@ -31,7 +31,7 @@ describe('Login system', () => {
     );
 
     await request(app)
-      .post('/login')
+      .post('/auth/login')
       .set('Content-Type', 'application/json')
       .send({
         name: 'John',
@@ -54,7 +54,7 @@ describe('Login system', () => {
     );
 
     const res = await request(app)
-      .post('/login')
+      .post('/auth/login')
       .set('Content-Type', 'application/json')
       .send({
         name: 'John',
