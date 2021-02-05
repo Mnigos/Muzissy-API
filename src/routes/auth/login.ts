@@ -33,3 +33,5 @@ router.post('/login', async (req: Request, res: Response) => {
     res.status(500).send({ e });
   }
 });
+
+export default router;
