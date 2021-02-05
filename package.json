@@ -9,7 +9,7 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "test": "jest",
-    "text:cov": "jest --coverage"
+    "test:cov": "jest --coverage"
   },
   "repository": "https://github.com/MoneyIgos/Muzissy-API.git",
   "author": "MoneyIgos <makowskiigor@gmail.com>",
