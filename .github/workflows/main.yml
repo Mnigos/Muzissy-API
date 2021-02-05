@@ -40,8 +40,6 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: Add codecov
-        run: yarn add codecov
 
       - name: Install dependencies 👨🏻‍💻
         run: yarn
@@ -49,12 +47,10 @@ jobs:
       - name: Run linter 👀
         run: yarn lint:fix
 
-      - name: Run tests 🧪
-        run: yarn test
+      - name: Collect coverage 🧪
+        run: yarn test:cov
 
-      - name: Collect coverage
+      - name: Upload coverage data 👽
         env: 
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        run: |
-          yarn test:cov
-          yarn codecov
+        run: npx codecov
