@@ -3,7 +3,6 @@ import { body, validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import User from '../../models/user';
-import { requireObjectKeysType } from '../../validation';
 
 const router = Router();
 
@@ -13,7 +12,8 @@ router.post(
   body('pass').isString(),
   async (req: Request, res: Response) => {
     try {
-      if (!requireObjectKeysType(req.body, ['name', 'pass'], 'string'))
+      const e = validationResult(req);
+      if (!e.isEmpty())
         return res
           .status(400)
           .send({ e: 'both name and pass are required in body' });
