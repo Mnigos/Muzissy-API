@@ -18,9 +18,16 @@ describe('Register system', () => {
         name: 'Jhon',
       })
       .expect(400);
+    await request(app)
+      .post('/auth/register')
+      .set('Content-Type', 'application/json')
+      .send({
+        email: 'jhon',
+      })
+      .expect(400);
   });
 
-  it('Register fails when user already exists', async () => {
+  it('Register fails when user with name already exists', async () => {
     const hash = bcrypt.hashSync('fly', 10);
 
     mockingoose(User).toReturn(
@@ -28,6 +35,7 @@ describe('Register system', () => {
         name: 'John',
         pass: hash,
         perms: 'admin',
+        email: 'john@muzissy.pl',
       },
       'findOne'
     );
@@ -39,6 +47,32 @@ describe('Register system', () => {
         name: 'John',
         pass: 'fly',
         perms: 'admin',
+        email: 'johnMail@muzissy.pl',
+      })
+      .expect(400);
+  });
+
+  it('Register fails when user with email already exists', async () => {
+    const hash = bcrypt.hashSync('fly', 10);
+
+    mockingoose(User).toReturn(
+      {
+        name: 'John',
+        pass: hash,
+        perms: 'admin',
+        email: 'john@muzissy.pl',
+      },
+      'findOne'
+    );
+
+    await request(app)
+      .post('/auth/register')
+      .set('Content-Type', 'application/json')
+      .send({
+        name: 'Peter',
+        pass: 'fly',
+        perms: 'admin',
+        email: 'john@muzissy.pl',
       })
       .expect(400);
   });
@@ -51,6 +85,7 @@ describe('Register system', () => {
         name: 'John',
         pass: 'fly',
         perms: 'admin',
+        email: 'john@muzissy.pl',
       })
       .expect(201);
   });

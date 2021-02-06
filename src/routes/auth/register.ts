@@ -10,6 +10,7 @@ router.post(
   body('name').isString(),
   body('pass').isString(),
   body('perms').isString(),
+  body('email').isEmail(),
   async (req: Request, res: Response) => {
     try {
       const e = validationResult(req);
@@ -17,10 +18,14 @@ router.post(
         return res
           .status(400)
           .send({ e: 'both name and pass are required in body' });
-      const { name, pass, perms } = req.body;
+      const { email, name, pass, perms } = req.body;
       const foundedUser = await User.findOne({ name });
 
       if (foundedUser) return res.status(400).send({ e: 'userExist' });
+
+      const foundedEmail = await User.findOne({ email });
+
+      if (foundedEmail) return res.status(400).send({ e: 'emailAlreadyUsed' });
 
       const hash = bcrypt.hashSync(pass, 10);
 
@@ -28,6 +33,7 @@ router.post(
         name,
         pass: hash,
         perms,
+        email,
       })
         .save()
         .then(() => {
