@@ -7,6 +7,9 @@ import User from '../../models/user.model';
 describe('Login system', () => {
   beforeEach(() => {
     mockingoose.resetAll();
+
+    delete process.env.TOKEN_SECRET;
+    delete process.env.REFRESH_TOKEN_SECRET;
   });
 
   it("Login fails when user data isn't provided or incomplete", async () => {
@@ -53,6 +56,9 @@ describe('Login system', () => {
   });
 
   it('login is succesfull when correct data is provided', async () => {
+    process.env.TOKEN_SECRET = 'abc';
+    process.env.REFRESH_TOKEN_SECRET = 'abcd';
+
     const hash = bcrypt.hashSync('fly', 10);
 
     mockingoose(User).toReturn(
