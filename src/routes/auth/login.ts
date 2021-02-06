@@ -1,6 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { body, validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
+import ms from 'ms';
 import bcrypt from 'bcrypt';
 import User from '../../models/user';
 
@@ -28,12 +29,19 @@ router.post(
       if (!isPasswordCorrect)
         return res.status(401).send({ e: 'password Incorrect' });
 
-      const token = jwt.sign(
-        { user: foundedUser.name, perms: foundedUser.perms },
-        'privateKey'
+      const accessToken = jwt.sign(
+        { user: foundedUser.name },
+        process.env.TOKEN_SECRET,
+        { expiresIn: ms('24h') }
       );
 
-      res.send({ token, perms: foundedUser.perms });
+      const refreshToken = jwt.sign(
+        { user: foundedUser.name },
+        process.env.REFRESH_TOKEN_SECRET,
+        { expiresIn: ms('30d') }
+      );
+
+      res.send({ accessToken, refreshToken, perms: foundedUser.perms });
     } catch (e) {
       res.status(500).send({ e });
     }
