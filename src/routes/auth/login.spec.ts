@@ -2,7 +2,7 @@ import mockingoose from 'mockingoose';
 import request from 'supertest';
 import bcrypt from 'bcrypt';
 import app from '../../app';
-import User from '../../models/user';
+import User from '../../models/user.model';
 
 describe('Login system', () => {
   beforeEach(() => {

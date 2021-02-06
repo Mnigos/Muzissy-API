@@ -3,7 +3,7 @@ import { body, validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
 import ms from 'ms';
 import bcrypt from 'bcrypt';
-import User from '../../models/user';
+import User from '../../models/user.model';
 
 const router = Router();
 
