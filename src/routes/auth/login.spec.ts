@@ -20,6 +20,17 @@ describe('Login system', () => {
       .expect(400);
   });
 
+  it('Login fails when data is incorrect type', async () => {
+    await request(app)
+      .post('/auth/login')
+      .set('Content-Type', 'application/json')
+      .send({
+        name: 'John',
+        pass: 123,
+      })
+      .expect(400);
+  });
+
   it('login fails when user password is incorrect', async () => {
     mockingoose(User).toReturn(
       {
