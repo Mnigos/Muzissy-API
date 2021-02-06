@@ -1,0 +1,21 @@
+### Register
+POST  /auth/register HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+
+{
+  "name": "abc",
+  "pass": "abc",
+  "perms": "admin"
+}
+### Login
+POST  /auth/login HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+
+{
+  "name": "abc",
+  "pass": "abc"
+}

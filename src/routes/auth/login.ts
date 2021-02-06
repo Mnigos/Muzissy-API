@@ -31,13 +31,14 @@ router.post(
 
       const accessToken = jwt.sign(
         { user: foundedUser.name },
-        process.env.TOKEN_SECRET,
+        // Must be a string
+        `${process.env.TOKEN_SECRET}`,
         { expiresIn: ms('24h') }
       );
 
       const refreshToken = jwt.sign(
         { user: foundedUser.name },
-        process.env.REFRESH_TOKEN_SECRET,
+        `${process.env.REFRESH_TOKEN_SECRET}`,
         { expiresIn: ms('30d') }
       );
 

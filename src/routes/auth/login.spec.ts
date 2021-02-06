@@ -73,6 +73,8 @@ describe('Login system', () => {
       })
       .expect(200);
 
-    expect(res.body?.token).toMatch(/^([a-zA-Z0-9-_.]+\.){2}[a-zA-Z0-9-_.]+$/i);
+    expect(res.body?.accessToken).toMatch(
+      /^([a-zA-Z0-9-_.]+\.){2}[a-zA-Z0-9-_.]+$/i
+    );
   });
 });
