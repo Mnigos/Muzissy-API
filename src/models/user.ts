@@ -1,6 +1,7 @@
 import { Schema, model, Document, Date } from 'mongoose';
 
 export interface IUser extends Document {
+  email: string;
   name: string;
   pass: string;
   perms: string;
@@ -8,6 +9,7 @@ export interface IUser extends Document {
 }
 
 const userSchema = new Schema({
+  email: String,
   name: String,
   pass: String,
   perms: String,
