@@ -5,7 +5,7 @@ import app from './app';
 require('dotenv').config();
 
 ['MONGO_URI'].forEach(variable => {
-  assert(process.env[variable], `proces.env${variable} is undefined!`);
+  assert(process.env[variable], `process.env${variable} is undefined!`);
 });
 mongoose.set('useFindAndModify', false);
 
