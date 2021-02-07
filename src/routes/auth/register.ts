@@ -25,7 +25,8 @@ router.post(
 
       const foundedEmail = await User.findOne({ email });
 
-      if (foundedEmail) return res.status(400).send({ err: 'emailAlreadyUsed' });
+      if (foundedEmail)
+        return res.status(400).send({ err: 'emailAlreadyUsed' });
 
       const hash = bcrypt.hashSync(pass, 10);
 
