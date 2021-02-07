@@ -4,3 +4,4 @@ src/config
 coverage
 package-lock.json
 .env
+.idea
