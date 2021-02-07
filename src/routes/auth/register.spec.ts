@@ -57,6 +57,31 @@ describe('Register system', () => {
 
     mockingoose(User).toReturn(
       {
+        name: 'Patrick',
+        pass: hash,
+        perms: 'admin',
+        email: 'john@muzissy.pl',
+      },
+      'findOne'
+    );
+
+    await request(app)
+      .post('/auth/register')
+      .set('Content-Type', 'application/json')
+      .send({
+        name: 'John',
+        pass: 'fly',
+        perms: 'admin',
+        email: 'john@muzissy.pl',
+      })
+      .expect(400);
+  });
+
+  it('Register fails when user with email already exists', async () => {
+    const hash = bcrypt.hashSync('fly', 10);
+
+    mockingoose(User).toReturn(
+      {
         name: 'John',
         pass: hash,
         perms: 'admin',
