@@ -7,7 +7,7 @@ Rest API for Muzissy Application
 
 ![ci](https://github.com/MoneyIgos/Muzissy-API/workflows/ci/badge.svg)
 [![codecov](https://codecov.io/gh/MoneyIgos/Muzissy-API/branch/master/graph/badge.svg?token=FO5JIVMWH3)](https://codecov.io/gh/MoneyIgos/Muzissy-API)
-![dependency](https://david-dm.org/MoneyIgos/Muzissy-API-api.svg)
+![dependency](https://status.david-dm.org/gh/MoneyIgos/Muzissy-API.svg)
 
 ### Installation
 

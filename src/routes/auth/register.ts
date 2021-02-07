@@ -17,15 +17,15 @@ router.post(
       if (!e.isEmpty())
         return res
           .status(400)
-          .send({ e: 'both name and pass are required in body' });
+          .send({ err: 'both name and pass are required in body' });
       const { email, name, pass, perms } = req.body;
       const foundedUser = await User.findOne({ name });
 
-      if (foundedUser) return res.status(400).send({ e: 'userExist' });
+      if (foundedUser) return res.status(400).send({ err: 'userExist' });
 
       const foundedEmail = await User.findOne({ email });
 
-      if (foundedEmail) return res.status(400).send({ e: 'emailAlreadyUsed' });
+      if (foundedEmail) return res.status(400).send({ err: 'emailAlreadyUsed' });
 
       const hash = bcrypt.hashSync(pass, 10);
 
