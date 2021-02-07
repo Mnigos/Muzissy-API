@@ -6,7 +6,7 @@ const router = Router();
 
 router.post(
   '/quiz/:id',
-  body('accesToken').isString(),
+  body('accessToken').isString(),
   async (req: Request, res: Response) => {
     try {
       const { accessToken } = req.body;
