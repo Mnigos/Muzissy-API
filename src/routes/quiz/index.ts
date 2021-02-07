@@ -6,7 +6,7 @@ const router = Router();
 
 router.post(
   '/quiz/:id',
-  body('accesToken').isString(),
+  body('accessToken').isString(),
   async (req: Request, res: Response) => {
     try {
       const { accessToken } = req.body;
@@ -23,8 +23,8 @@ router.post(
 
       if (!jwt.verify(accessToken, process.env.TOKEN_SECRET))
         return res.status(401).send({ err: 'bad token' });
-    } catch (e) {
-      res.status(500).send({ e });
+    } catch (err) {
+      res.status(500).send({ err });
     }
   }
 );
