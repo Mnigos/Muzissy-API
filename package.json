@@ -1,5 +1,5 @@
 {
-  "name": "Muzissy-API",
+  "name": "muzissy-api",
   "version": "1.0.0",
   "description": "Rest API for Muzissy Application",
   "main": "src/server.ts",
