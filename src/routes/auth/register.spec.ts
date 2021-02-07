@@ -77,7 +77,7 @@ describe('Register system', () => {
       .expect(400);
   });
 
-  it('register is succesfull when correct data is provided', async () => {
+  it('register is successful when correct data is provided', async () => {
     await request(app)
       .post('/auth/register')
       .set('Content-Type', 'application/json')
