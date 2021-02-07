@@ -13,8 +13,8 @@ router.post(
   body('pass').isString(),
   async (req: Request, res: Response) => {
     try {
-      const e = validationResult(req);
-      if (!e.isEmpty())
+      const err = validationResult(req);
+      if (!err.isEmpty())
         return res
           .status(400)
           .send({ err: 'both name and pass are required in body' });
@@ -42,8 +42,8 @@ router.post(
       );
 
       res.send({ accessToken, refreshToken, perms: foundedUser.perms });
-    } catch (e) {
-      res.status(500).send({ e });
+    } catch (err) {
+      res.status(500).send({ err });
     }
   }
 );
