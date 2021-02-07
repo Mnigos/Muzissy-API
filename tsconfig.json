@@ -5,7 +5,11 @@
     "preserveConstEnums": true,
     "esModuleInterop": true,
     "outDir": "dist",
-    "typeRoots": ["./typings", "./node_modules/@types"]
+    "typeRoots": ["./typings", "./node_modules/@types"],
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

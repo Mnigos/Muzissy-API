@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import assert from 'assert';
-import app from './app';
+import app from '@/app';
 
 require('dotenv').config();
 
