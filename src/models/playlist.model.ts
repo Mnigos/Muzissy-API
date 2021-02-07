@@ -17,6 +17,6 @@ const playlistSchema = new Schema({
   createdAt: Date,
 });
 
-const Playlist = model<IPlaylist>('User', playlistSchema);
+const Playlist = model<IPlaylist>('Playlist', playlistSchema);
 
 export default Playlist;

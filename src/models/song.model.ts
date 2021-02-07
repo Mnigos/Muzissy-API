@@ -16,6 +16,6 @@ const songSchema = new Schema({
   genre: String,
 });
 
-const Song = model<ISong>('User', songSchema);
+const Song = model<ISong>('Song', songSchema);
 
 export default Song;
