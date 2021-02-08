@@ -22,9 +22,8 @@ router.post(
 
       const foundedName = await Song.findOne({ name });
 
-      if (foundedName)
-        if (foundedName.name === name && foundedName.band === band)
-          return res.status(400).send({ err: 'songAlreadyExist' });
+      if (foundedName?.name === name && foundedName?.band === band)
+        return res.status(400).send({ err: 'songAlreadyExist' });
 
       new Song({
         name,
