@@ -1,11 +1,12 @@
 {
-  "name": "Muzissy-API",
+  "name": "muzissy-api",
   "version": "1.0.0",
   "description": "Rest API for Muzissy Application",
   "main": "src/server.ts",
   "scripts": {
-    "serve": "nodemon",
+    "serve": "nodemon -x \"ts-node -r tsconfig-paths/register\" src/server.ts",
     "build": "tsc --build tsconfig.build.json",
+    "start": "node -r tsconfig-paths/register dist/main.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "test": "jest",
@@ -54,6 +55,7 @@
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "supertest": "^6.1.3",
+    "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   },
   "lint-staged": {

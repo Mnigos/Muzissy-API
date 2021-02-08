@@ -13,19 +13,20 @@ router.post(
   body('email').isEmail(),
   async (req: Request, res: Response) => {
     try {
-      const e = validationResult(req);
-      if (!e.isEmpty())
+      const err = validationResult(req);
+      if (!err.isEmpty())
         return res
           .status(400)
-          .send({ e: 'both name and pass are required in body' });
+          .send({ err: 'both name and pass are required in body' });
       const { email, name, pass, perms } = req.body;
       const foundedUser = await User.findOne({ name });
 
-      if (foundedUser) return res.status(400).send({ e: 'userExist' });
+      if (foundedUser) return res.status(400).send({ err: 'userExist' });
 
       const foundedEmail = await User.findOne({ email });
 
-      if (foundedEmail) return res.status(400).send({ e: 'emailAlreadyUsed' });
+      if (foundedEmail)
+        return res.status(400).send({ err: 'emailAlreadyUsed' });
 
       const hash = bcrypt.hashSync(pass, 10);
 
@@ -41,8 +42,8 @@ router.post(
             message: 'Created',
           });
         });
-    } catch (e) {
-      res.status(500).send({ e });
+    } catch (err) {
+      res.status(500).send({ err });
     }
   }
 );

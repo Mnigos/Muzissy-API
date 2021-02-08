@@ -55,7 +55,7 @@ describe('Login system', () => {
       .expect(401);
   });
 
-  it('login is succesfull when correct data is provided', async () => {
+  it('login is successful when correct data is provided', async () => {
     process.env.TOKEN_SECRET = 'abc';
     process.env.REFRESH_TOKEN_SECRET = 'abcd';
 

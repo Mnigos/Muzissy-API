@@ -13,21 +13,21 @@ router.post(
   body('pass').isString(),
   async (req: Request, res: Response) => {
     try {
-      const e = validationResult(req);
-      if (!e.isEmpty())
+      const err = validationResult(req);
+      if (!err.isEmpty())
         return res
           .status(400)
-          .send({ e: 'both name and pass are required in body' });
+          .send({ err: 'both name and pass are required in body' });
 
       const { name, pass } = req.body;
       const foundedUser = await User.findOne({ name });
 
-      if (!foundedUser) return res.status(400).send({ e: 'userNotFound' });
+      if (!foundedUser) return res.status(400).send({ err: 'userNotFound' });
 
       const isPasswordCorrect = bcrypt.compareSync(pass, foundedUser.pass);
 
       if (!isPasswordCorrect)
-        return res.status(401).send({ e: 'password Incorrect' });
+        return res.status(401).send({ err: 'password Incorrect' });
 
       const accessToken = jwt.sign(
         { user: foundedUser.name },
@@ -42,8 +42,8 @@ router.post(
       );
 
       res.send({ accessToken, refreshToken, perms: foundedUser.perms });
-    } catch (e) {
-      res.status(500).send({ e });
+    } catch (err) {
+      res.status(500).send({ err });
     }
   }
 );
