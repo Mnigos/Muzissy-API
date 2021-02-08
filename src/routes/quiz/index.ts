@@ -9,8 +9,7 @@ router.post(
   passport.authenticate('bearer', { session: false }),
   async (req: Request, res: Response) => {
     try {
-      const playlist = await Playlist.findOne({ _id: req.params.id });
-      const { songs } = playlist;
+      const { songs } = await Playlist.findOne({ _id: req.params.id });
 
       const randomNumber = () => Math.floor(Math.random() * songs.length);
 
