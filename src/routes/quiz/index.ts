@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
 import passport from 'passport';
+import random from 'lodash.random';
 import Playlist from '../../models/playlist.model';
 
 const router = Router();
@@ -11,9 +12,7 @@ router.post(
     try {
       const { songs } = await Playlist.findOne({ _id: req.params.id });
 
-      const randomNumber = () => Math.floor(Math.random() * songs.length);
-
-      const rightSong = songs[randomNumber()];
+      const rightSong = songs[random(songs.length)];
 
       res.status(200).send({
         songs: [
@@ -23,13 +22,13 @@ router.post(
             file: rightSong.file,
           },
           {
-            name: songs[randomNumber()].name,
+            name: songs[random(songs.length)].name,
           },
           {
-            name: songs[randomNumber()].name,
+            name: songs[random(songs.length)].name,
           },
           {
-            name: songs[randomNumber()].name,
+            name: songs[random(songs.length)].name,
           },
         ],
       });
