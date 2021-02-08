@@ -5,6 +5,7 @@
     "preserveConstEnums": true,
     "esModuleInterop": true,
     "outDir": "dist",
+    "skipLibCheck": true,
     "typeRoots": ["./typings", "./node_modules/@types"],
     "baseUrl": "./src",
     "paths": {
@@ -12,5 +13,5 @@
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/**/*.spec.ts"]
 }

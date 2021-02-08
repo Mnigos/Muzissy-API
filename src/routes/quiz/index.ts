@@ -1,28 +1,37 @@
 import { Request, Response, Router } from 'express';
-import { body, validationResult } from 'express-validator';
-import jwt from 'jsonwebtoken';
+import passport from 'passport';
+import random from 'lodash.random';
+import Playlist from '../../models/playlist.model';
 
 const router = Router();
 
 router.post(
   '/quiz/:id',
-  body('accessToken').isString(),
+  passport.authenticate('bearer', { session: false }),
   async (req: Request, res: Response) => {
     try {
-      const { accessToken } = req.body;
+      const { songs } = await Playlist.findOne({ _id: req.params.id });
 
-      const err = validationResult(req);
-      const validToken = accessToken.toMatch(
-        /^([a-zA-Z0-9-_.]+\.){2}[a-zA-Z0-9-_.]+$/i
-      );
+      const rightSong = songs[random(songs.length)];
 
-      if (!err.isEmpty())
-        return res.status(400).send({ err: 'token is required' });
-
-      if (!validToken) return res.status(400).send({ err: 'token is invalid' });
-
-      if (!jwt.verify(accessToken, process.env.TOKEN_SECRET))
-        return res.status(401).send({ err: 'bad token' });
+      res.status(200).send({
+        songs: [
+          {
+            name: rightSong.name,
+            img: rightSong.img,
+            file: rightSong.file,
+          },
+          {
+            name: songs[random(songs.length)].name,
+          },
+          {
+            name: songs[random(songs.length)].name,
+          },
+          {
+            name: songs[random(songs.length)].name,
+          },
+        ],
+      });
     } catch (err) {
       res.status(500).send({ err });
     }
