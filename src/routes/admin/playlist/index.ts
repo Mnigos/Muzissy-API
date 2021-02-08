@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import playlistRoute from './create';
+import createRoute from './create';
 
 const router = Router();
 
-router.use('/', playlistRoute);
+router.use('/', createRoute);
 
 export default router;
