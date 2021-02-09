@@ -18,17 +18,20 @@ router.post(
         songs: [
           {
             name: rightSong.name,
-            img: rightSong.img,
             file: rightSong.file,
+            answer: true,
           },
           {
             name: songs[random(songs.length)].name,
+            answer: false,
           },
           {
             name: songs[random(songs.length)].name,
+            answer: false,
           },
           {
             name: songs[random(songs.length)].name,
+            answer: false,
           },
         ],
       });
