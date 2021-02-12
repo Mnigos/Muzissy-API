@@ -3,9 +3,6 @@ import Playlist from '../../models/playlist.model';
 const router = Router();
 
 router.get('/', (req: Request, res: Response) => {
-  const playlists = Playlist.find();
-  res.send(playlists);
-
   Playlist.findOne((err: any, playlist: any) => {
     if (err) {
       return res.status(500).send({
