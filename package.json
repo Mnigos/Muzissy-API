@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "test": "jest",
+    "test:watch": "jest --watch",
     "test:cov": "jest --coverage"
   },
   "repository": "https://github.com/MoneyIgos/Muzissy-API.git",
@@ -23,6 +24,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.9.2",
     "jsonwebtoken": "^8.5.1",
+    "lodash.random": "^3.2.0",
     "mongoose": "^5.11.15",
     "ms": "^2.1.3",
     "passport": "^0.4.1",
