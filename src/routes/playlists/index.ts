@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express';
 import Playlist from '../../models/playlist.model';
 const router = Router();
 
-router.get('/', (req: Request, res: Response) => {
+router.post('/', (req: Request, res: Response) => {
   Playlist.findOne((err: any, playlist: any) => {
     if (err) {
       return res.status(500).send({
