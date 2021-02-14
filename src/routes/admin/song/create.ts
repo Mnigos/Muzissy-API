@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
 import { body, validationResult } from 'express-validator';
+import passport from 'passport';
 import Song from '../../../models/song.model';
 
 const router = Router();
@@ -11,6 +12,7 @@ router.post(
   body('img').isString(),
   body('file').isString(),
   body('genre').isString(),
+  passport.authenticate('bearer', { session: false }),
   async (req: Request, res: Response) => {
     try {
       const err = validationResult(req);
