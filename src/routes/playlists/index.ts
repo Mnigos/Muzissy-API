@@ -3,7 +3,7 @@ import Playlist from '../../models/playlist.model';
 const router = Router();
 
 router.post('/', (req: Request, res: Response) => {
-  Playlist.findOne((err: any, playlist: any) => {
+  Playlist.find((err: any, playlist: any) => {
     if (err) {
       return res.status(500).send({
         err: 'Cannot get this from database'
