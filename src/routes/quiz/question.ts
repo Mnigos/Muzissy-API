@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 import { random, shuffle } from 'lodash';
-import { ISong } from '@/models/song.model';
+import ISong from '@/interfaces/song.interface';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import ms from 'ms';
