@@ -1,5 +1,4 @@
 import { Request, Response, Router } from 'express';
-import { body, validationResult } from 'express-validator';
 import passport from 'passport';
 import Song from '../../../models/song.model';
 
@@ -7,32 +6,18 @@ const router = Router();
 
 router.post(
   '/create',
-  body('name').isString(),
-  body('band').isString(),
-  body('img').isString(),
-  body('file').isString(),
-  body('genre').isString(),
   passport.authenticate('bearer', { session: false }),
   async (req: Request, res: Response) => {
     try {
-      const err = validationResult(req);
-      if (!err.isEmpty())
-        return res
-          .status(400)
-          .send({ err: 'name band image file and genre are required in body' });
-      const { name, band, img, file, genre } = req.body;
+      const { song } = req.body;
 
-      const foundedName = await Song.findOne({ name });
+      const foundedName = await Song.findOne({ name: song.name });
 
-      if (foundedName?.name === name && foundedName?.band === band)
+      if (foundedName?.name === song.name && foundedName?.band === song.band)
         return res.status(400).send({ err: 'songAlreadyExist' });
 
       new Song({
-        name,
-        band,
-        img,
-        file,
-        genre,
+        song,
       })
         .save()
         .then(() => {
