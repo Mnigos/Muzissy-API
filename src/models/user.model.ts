@@ -1,6 +1,6 @@
 import { Schema, model, Document, Date } from 'mongoose';
 
-export interface IUser extends Document {
+export interface UserDoc extends Document {
   email: string;
   name: string;
   pass: string;
@@ -16,6 +16,6 @@ const userSchema = new Schema({
   createdAt: Date,
 });
 
-const User = model<IUser>('User', userSchema);
+const User = model<UserDoc>('User', userSchema);
 
 export default User;
