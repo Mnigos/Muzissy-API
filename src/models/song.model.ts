@@ -1,11 +1,12 @@
 import { Schema, model, Document } from 'mongoose';
 
-export interface ISong extends Document {
+export interface SongDoc extends Document {
   name: string;
   band: string;
   img: string;
   file: string;
   genre: string;
+  id: string;
 }
 
 const songSchema = new Schema({
@@ -14,8 +15,9 @@ const songSchema = new Schema({
   img: String,
   file: String,
   genre: String,
+  id: String,
 });
 
-const Song = model<ISong>('Song', songSchema);
+const Song = model<SongDoc>('Song', songSchema);
 
 export default Song;

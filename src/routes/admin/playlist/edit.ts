@@ -5,26 +5,19 @@ import Playlist from '../../../models/playlist.model';
 const router = Router();
 
 router.post(
-  '/create',
+  '/edit',
   passport.authenticate('bearer', { session: false }),
   async (req: Request, res: Response) => {
     try {
       const { playlist } = req.body;
 
-      const foundedName = await Playlist.findOne({ name: playlist.name });
+      let foundedSong = await Playlist.findOne({ id: playlist.id });
 
-      if (foundedName)
-        return res.status(400).send({ err: 'playlistAlreadyExist' });
-
-      new Playlist({
-        playlist,
-      })
-        .save()
-        .then(() => {
-          res.status(201).send({
-            message: 'Created',
-          });
-        });
+      if (foundedSong) {
+        foundedSong = req.body.playlist;
+        foundedSong.save();
+        res.status(201).send({ message: 'Edited' });
+      } else return res.status(400).send({ err: 'songDoesNotExist' });
     } catch (err) {
       res.status(500).send({ err });
     }

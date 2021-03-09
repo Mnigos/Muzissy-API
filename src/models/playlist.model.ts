@@ -1,12 +1,13 @@
 import { Schema, model, Document, Date } from 'mongoose';
-import { ISong } from './song.model';
+import { SongDoc } from './song.model';
 
-export interface IPlaylist extends Document {
+export interface PlaylistDoc extends Document {
   name: string;
   img: string;
-  songs: ISong[];
+  songs: SongDoc[];
   difficulty: string;
   createdAt: Date;
+  id: string;
 }
 
 const playlistSchema = new Schema({
@@ -15,8 +16,9 @@ const playlistSchema = new Schema({
   songs: [{ type: Schema.Types.ObjectId, ref: 'Song' }],
   difficulty: String,
   createdAt: Date,
+  id: String,
 });
 
-const Playlist = model<IPlaylist>('Playlist', playlistSchema);
+const Playlist = model<PlaylistDoc>('Playlist', playlistSchema);
 
 export default Playlist;
