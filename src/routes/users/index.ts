@@ -11,9 +11,13 @@ router.post('/', (req: Request, res: Response) => {
       });
     }
 
-    const users = rawUsers.map((
-      {_id, email, name, perms, __v }) => (
-        {_id, email, name, perms, __v}));
+    const users = rawUsers.map(({ _id, email, name, perms, __v }) => ({
+      _id,
+      email,
+      name,
+      perms,
+      __v,
+    }));
 
     return res.status(200).send({
       users,
