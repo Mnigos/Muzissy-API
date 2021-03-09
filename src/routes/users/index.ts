@@ -15,7 +15,6 @@ router.post('/', (req: Request, res: Response) => {
       {_id, email, name, perms, __v }) => (
         {_id, email, name, perms, __v}));
 
-    rawUsers.forEach(user => user.pass = "");
     return res.status(200).send({
       users,
     });
