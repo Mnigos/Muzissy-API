@@ -11,6 +11,6 @@ router.use('/auth', authRoutes);
 router.use('/admin', adminRoutes);
 router.use('/playlists', playlistRoutes);
 router.use('/quiz', quizRoutes);
-router.use('/user', userRoutes);
+router.use('/users', userRoutes);
 
 export default router;
