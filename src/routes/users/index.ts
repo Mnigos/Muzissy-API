@@ -3,7 +3,7 @@ import User from '../../models/user.model';
 
 const router = Router();
 
-router.post('/', (req: Request, res: Response) => {
+router.get('/', (req: Request, res: Response) => {
   User.find((err, rawUsers) => {
     if (err) {
       return res.status(500).send({
