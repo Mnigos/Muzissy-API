@@ -17,7 +17,7 @@ router.post(
         return res.status(400).send({ err: 'playlistAlreadyExist' });
 
       new Playlist({
-        playlist,
+        ...playlist,
       })
         .save()
         .then(() => {
