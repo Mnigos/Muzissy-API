@@ -14,7 +14,7 @@ router.post(
       let foundedSong = await Song.findOne({ id: song.id });
 
       if (foundedSong) {
-        foundedSong = req.body.song;
+        foundedSong = song;
         foundedSong.save();
         res.status(201).send({ message: 'Edited' });
       } else return res.status(400).send({ err: 'songDoesNotExist' });
