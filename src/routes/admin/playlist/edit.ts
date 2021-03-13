@@ -11,11 +11,11 @@ router.post(
     try {
       const { playlist } = req.body;
 
-      let foundedSong = await Playlist.findOne({ id: playlist.id });
+      let foundedPlaylist = await Playlist.findOne({ id: playlist.id });
 
-      if (foundedSong) {
-        foundedSong = req.body.playlist;
-        foundedSong.save();
+      if (foundedPlaylist) {
+        foundedPlaylist = playlist;
+        foundedPlaylist.save();
         res.status(201).send({ message: 'Edited' });
       } else return res.status(400).send({ err: 'songDoesNotExist' });
     } catch (err) {
