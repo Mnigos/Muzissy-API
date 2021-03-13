@@ -17,7 +17,7 @@ router.post(
         return res.status(400).send({ err: 'songAlreadyExist' });
 
       new Song({
-        song,
+        ...song,
       })
         .save()
         .then(() => {
